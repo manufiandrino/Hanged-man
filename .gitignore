@@ -1,1 +1,17 @@
 venv/
+assert_statements.py
+debugging_con_assert.py
+debugging_con_try.py
+dictionary_comprehension.py
+ejemplo_assertion_error.py
+filtrando_datos.py
+list_comprehension.py
+lists_and_dicts.py
+palindromo_con_lambda.py
+prueba_ahorcado.py
+prueba_list_comprehension.py
+reto_dictionary_comprehension.py
+reto_filtrando_datos.py
+reto_list_comprehension.py
+v2_juego_del_ahorcado.py
+archivos.py
