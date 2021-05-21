@@ -64,6 +64,7 @@ HANGMANPICS = ['''
       |
 =========''']
 
+
 def normalize(s):
     replacements = (
         ("á", "a"),
@@ -75,6 +76,7 @@ def normalize(s):
     for a, b in replacements:
         s = s.replace(a, b).replace(a.upper(), b.upper())
     return s
+
 
 def print_word(word, guessed_letters):
     """Esta funcion va a imprimir una cantidad len(word)
@@ -100,6 +102,7 @@ def print_word(word, guessed_letters):
     else:
         return False
     
+
 def random_word():
     """Selecciona una palabra aleatorio del archivo data.txt.
 
@@ -114,6 +117,7 @@ def random_word():
     selected_word = words[random.randint(0, counter)]       
     return selected_word
 
+
 def letter_input(letter):
     """Optimiza la letra ingresada.
 
@@ -124,22 +128,16 @@ def letter_input(letter):
     
     """
     try:
-        if letter.isnumeric() == True:
-            raise ValueError
-        if len(letter) != 1:
-            raise ValueError
-        if letter == "":
-            raise ValueError
-        if letter == " ":
+        if letter.isnumeric() == True or len(letter) != 1 or letter == "" or letter == " ":
             raise ValueError
         letter = letter.strip()
         letter = letter.lower()
-        optimized_letter = letter
-        return optimized_letter
+        return letter
     except ValueError as ve:
         os.system('cls')
         print('\nNo se pueden ingresar numeros, ni mas de un letra.\n')
         return False
+
 
 def save_word_letters(word):
     letters_to_guess = []
@@ -149,19 +147,22 @@ def save_word_letters(word):
         letters_to_guess.append(letter)
     return letters_to_guess
 
+
 def run():
+    
     lifes = 6
     guessed_letters = []
     already_said_letters = []
     word_to_guess = normalize(random_word())
     letters_to_guess = save_word_letters(word_to_guess)
     os.system('cls')
-    print("Bienvenido al Ahorcado \n ------------")
+    print("Bienvenido al Ahorcado \n ------------\n")
 
     while lifes > 0 and print_word(word_to_guess, guessed_letters) == False:
         print('\n' + HANGMANPICS[6 - lifes])
         print('\n\nTienes ' + str(lifes) + ' vidas')
         choosed_letter = letter_input(input("\nIngresa una letra: \n"))
+
         if choosed_letter == False: 
             continue
         else:
@@ -181,10 +182,12 @@ def run():
                 print('Ya dijiste las letras: ' + "".join(already_said_letters) + '\n')
 
     print('\n' + HANGMANPICS[6 - lifes])
+
     if lifes > 0:
-        print("\n Ganaste!!!, te quedaban " + str(lifes) + " vidas")
+        print("\n Ganaste!, te quedaban " + str(lifes) + " vidas")
     else:        
         print('\n\nPerdiste, la palabra era ' + word_to_guess)
+
 
 if __name__ == '__main__':
     run()
