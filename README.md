@@ -1,1 +1,1 @@
-"# Hanged-man" 
+"# Hangman" 
